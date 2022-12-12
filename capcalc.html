@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Battery Capacity Calculator</title>
+
+    <link href="form-style.css" rel="stylesheet" />
+    <link href="table-style.css" rel="stylesheet" />
+
+    <script src="./capcalc.js" defer></script>
+  </head>
+  <body>
+    <h1>Battery Capacity Calculator</h1>
+    <form id="electrodeInput">
+      <p>Use the form below to enter enter information about your electrode. When done, click "Calculate" to add the electrode to the table below:</p>
+      <ul>
+        <li>
+          <label for="composition">Composition:</label>
+          <input type="text" id="composition" name="composition" required>
+        </li>
+        <li>
+          <label for="liFrac">Max. Li extraction:</label>
+          <input type="text" id="liFrac" name="liFrac" value="0.8" required>
+        </li>
+        <li>
+          <label for="mass">Mass Active Electrode [mg]:</label>
+          <input type="text" id="mass" name="mass" required>
+        </li>
+        <li class="button">
+          <button type="submit" id="calculate">Calculate</button>
+        </li>
+       </ul>
+    </form>
+    <section>
+      <p>The table below shows the previous results from the battery calculation:</p>
+      <table id="results">
+        <tr>
+          <th>Composition</th>
+          <th>Mr [g mol<sup>-1</sup>]</th>
+          <th>Capacity [mAh g<sup>-1</sup>]</th>
+          <th>Max. Li Extraction</th>
+          <th>Active Electrode Mass [mg]</th>
+          <th>Total Electrode Capacity [mAh]</th>
+          <th>1C [mA]</th>
+          <th>C/2 [mA]</th>
+          <th>C/5 [mA]</th>
+          <th>C/10 [mA]</th>
+        </tr>
+
+      </table>
+    </section>
+  </body>
+</html>
