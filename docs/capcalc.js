@@ -79,9 +79,13 @@ function populateRow(result) {
 
 function calculateAll(composition, liExtract, mass, efficiency) {
     let parsedComposition = parseChemicalFormula(composition);
-    let fw = parsedComposition;
-    delete parsedComposition["Li"];
-    let fwExLi = calcFormulaWeight(parsedComposition);
+
+    liExtract = Number(liExtract.replace(",", "."))
+    let compositionExLi = parsedComposition;
+    compositionExLi["Li"] = parsedComposition["Li"] - liExtract;
+
+    let fw = calcFormulaWeight(parsedComposition);
+    let fwExLi = calcFormulaWeight(compositionExLi);
 
     let capacity = calc_capacity(fwExLi);
     let electrodeCapacity = calc_electrode_capacity(capacity, mass / 1000, efficiency);
