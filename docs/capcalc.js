@@ -39,27 +39,31 @@ function calc_capacity(formulaWeightNoLi) {
     return (FARADAY / (HOUR * formulaWeightNoLi)) * 1000;
 }
 
-function calc_electrode_capacity(specificCapacity, mass, liFrac) {
+function calc_electrode_capacity(specificCapacity, mass, efficiency) {
     // specificCapacity of electrode compound - mAh g-1
     // mass of (active) electrode used - g
     // liFrac - degree to which Li can be removed (fraction)
-    return specificCapacity * mass * liFrac;
+    return specificCapacity * mass * efficiency;
+}
+
+function populateCell(label, result) {
+    let tdResult = document.createElement('td');
+
+    let val = result[label];
+    if (typeof(val) === "number") {
+        tdResult.textContent = val.toFixed(3);
+    } else {
+        tdResult.textContent = val;
+    }
+
+    return tdResult;
 }
 
 function populateRow(result) {
     let trResult = document.createElement('tr')
 
-    for(const col in result) {
-        let tdResult = document.createElement('td');
-        let val;
-        if (typeof(result[col]) === "number") {
-            val = result[col].toFixed(3);
-        } else {
-            val = result[col]
-        }
-        tdResult.textContent = val;
-        trResult.appendChild(tdResult);
-    };
+    const fields = ["composition", "fwExLi", "capacity", "efficiency", "mass", "electrodeCapacity"];
+    fields.forEach(field => trResult.appendChild(populateCell(field, result)));
     
     let cValues = [1, 0.5, 0.2, 0.1];
     cValues.forEach(function(val) {
@@ -71,21 +75,24 @@ function populateRow(result) {
     return trResult;
 }
 
-function calculateAll(composition, mass, liFrac) {
+function calculateAll(composition, liExtract, mass, efficiency) {
     let parsedComposition = parseChemicalFormula(composition);
+    let fw = parsedComposition;
     delete parsedComposition["Li"];
-    let fwNoLi = calcFormulaWeight(parsedComposition);
+    let fwExLi = calcFormulaWeight(parsedComposition);
 
-    let capacity = calc_capacity(fwNoLi);
-    let electrodeCapacity = calc_electrode_capacity(capacity, mass / 1000, liFrac);
+    let capacity = calc_capacity(fwExLi);
+    let electrodeCapacity = calc_electrode_capacity(capacity, mass / 1000, efficiency);
     
     return {
         composition: composition,
-        fwNoLi: fwNoLi,     // g mol-1
+        liExtract: liExtract,
+        fw: fw,             // g mol-1
+        fwExLi: fwExLi,     // g mol-1
         capacity: capacity, // mAh g-1
-        liFrac: liFrac,
+        efficiency: efficiency,
         mass: mass,         // mg
-        electrodeCapacity: electrodeCapacity,
+        electrodeCapacity: electrodeCapacity,   // mAh
     }
 }
 
@@ -96,7 +103,7 @@ window.addEventListener("load", () => {
     function submitForm() {
         const FD = new FormData(calcForm);
 
-        let result = calculateAll(FD.get("composition"), FD.get("mass"), FD.get("liFrac"));
+        let result = calculateAll(FD.get("composition"), FD.get("li-extract"), FD.get("mass"), FD.get("efficiency"));
         tableBody.appendChild(populateRow(result));
     }
     

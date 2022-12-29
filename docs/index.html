@@ -16,15 +16,19 @@
       <p>Use the form below to enter enter information about your electrode. When done, click "Calculate" to add the electrode to the table below:</p>
       <ul>
         <li>
-          <label for="composition">Composition:</label>
+          <label for="composition">Composition<br>(Fully Lithiated):</label>
           <input type="text" id="composition" name="composition" required>
         </li>
         <li>
-          <label for="liFrac">Max. Li extraction:</label>
-          <input type="text" id="liFrac" name="liFrac" value="0.8" required>
+          <label for="li-extract">Extractable Li<br>[mol]:</label>
+          <input type="text" id="li-extract" name="li-extract" value="1.0" required>
         </li>
         <li>
-          <label for="mass">Mass Active Electrode [mg]:</label>
+          <label for="efficiency">Cycle Efficiency:</label>
+          <input type="text" id="efficiency" name="efficiency" value="0.8" required>
+        </li>
+        <li>
+          <label for="mass">Active Electrode Mass<br>[mg]:</label>
           <input type="text" id="mass" name="mass" required>
         </li>
         <li class="button">
@@ -33,19 +37,23 @@
        </ul>
     </form>
     <section>
-      <p>The table below shows the previous results from the battery calculation:</p>
+      <p>The table below shows the previous results from the battery capacity calculation:</p>
       <table id="results">
         <tr>
-          <th>Composition</th>
-          <th>Mr [g mol<sup>-1</sup>]</th>
-          <th>Capacity [mAh g<sup>-1</sup>]</th>
-          <th>Max. Li Extraction</th>
-          <th>Active Electrode Mass [mg]</th>
-          <th>Total Electrode Capacity [mAh]</th>
-          <th>1C [mA]</th>
-          <th>C/2 [mA]</th>
-          <th>C/5 [mA]</th>
-          <th>C/10 [mA]</th>
+          <!-- <th colspan="6"></th> -->
+          <th rowspan="2">Composition</th>
+          <th rowspan="2">Mr<br>[g&nbsp;mol<sup>-1</sup>]</th>
+          <th rowspan="2">Capacity<br />[mAh&nbsp;g<sup>-1</sup>]</th>
+          <th rowspan="2">Cycle Efficiency</th>
+          <th rowspan="2">Active Electrode Mass<br>[mg]</th>
+          <th rowspan="2">Theoret. Electrode Capacity<br>[mAh]</th>
+          <th colspan="4">Charging Rate</th>
+        </tr>
+        <tr>
+          <th>1C<br>[mA]</th>
+          <th>C/2<br>[mA]</th>
+          <th>C/5<br>[mA]</th>
+          <th>C/10<br>[mA]</th>
         </tr>
 
       </table>
