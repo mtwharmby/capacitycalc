@@ -64,7 +64,7 @@ function populateRow(result) {
     let cValues = [1, 0.5, 0.2, 0.1];
     cValues.forEach(function(val) {
         let tdCVal = document.createElement('td');
-        tdCVal.textContent = (result.capacity * val).toFixed(3);
+        tdCVal.textContent = (result.electrodeCapacity * val).toFixed(3);
         trResult.appendChild(tdCVal);
     });
 
