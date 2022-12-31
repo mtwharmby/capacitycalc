@@ -5,58 +5,61 @@
     <meta name="viewport" content="width=device-width">
     <title>Battery Capacity Calculator</title>
 
+    <link href="common.css" rel="stylesheet" />
     <link href="form-style.css" rel="stylesheet" />
     <link href="table-style.css" rel="stylesheet" />
 
     <script src="./capcalc.js" type="module" defer></script>
   </head>
   <body>
-    <h1>Battery Capacity Calculator</h1>
-    <form id="electrodeInput">
-      <p>Use the form below to enter enter information about your electrode. When done, click "Calculate" to add the electrode to the table below:</p>
-      <ul>
-        <li>
-          <label for="composition">Composition<br>(Fully Lithiated):</label>
-          <input type="text" id="composition" name="composition" required>
-        </li>
-        <li>
-          <label for="li-extract">Extractable Li<br>[mol]:</label>
-          <input type="text" id="li-extract" name="li-extract" value="1.0" required>
-        </li>
-        <li>
-          <label for="efficiency">Cycle Efficiency:</label>
-          <input type="text" id="efficiency" name="efficiency" value="0.8" required>
-        </li>
-        <li>
-          <label for="mass">Active Electrode Mass<br>[mg]:</label>
-          <input type="text" id="mass" name="mass" required>
-        </li>
-        <li class="button">
-          <button type="submit" id="calculate">Calculate</button>
-        </li>
-       </ul>
-    </form>
-    <section>
-      <p>The table below shows the previous results from the battery capacity calculation:</p>
-      <table id="results">
-        <tr>
-          <!-- <th colspan="6"></th> -->
-          <th rowspan="2">Composition</th>
-          <th rowspan="2">Mr&nbsp;(delithiated)<br>[g&nbsp;mol<sup>-1</sup>]</th>
-          <th rowspan="2">Capacity<br />[mAh&nbsp;g<sup>-1</sup>]</th>
-          <th rowspan="2">Cycle Efficiency</th>
-          <th rowspan="2">Active Electrode Mass<br>[mg]</th>
-          <th rowspan="2">Theoret. Electrode Capacity<br>[mAh]</th>
-          <th colspan="4">Charging Rate</th>
-        </tr>
-        <tr>
-          <th>1C<br>[mA]</th>
-          <th>C/2<br>[mA]</th>
-          <th>C/5<br>[mA]</th>
-          <th>C/10<br>[mA]</th>
-        </tr>
+    <main>
+      <h1>Battery Capacity Calculator</h1>
+      <form id="electrodeInput">
+        <p>Use the form below to enter enter information about your electrode. When done, click "Calculate" to add the electrode to the table below:</p>
+        <ul>
+          <li>
+            <label for="composition">Composition<br>(Fully Lithiated):</label>
+            <input type="text" id="composition" name="composition" required>
+          </li>
+          <li>
+            <label for="li-extract">Extractable Li<br>[mol]:</label>
+            <input type="text" id="li-extract" name="li-extract" value="1.0" required>
+          </li>
+          <li>
+            <label for="efficiency">Cycle Efficiency:</label>
+            <input type="text" id="efficiency" name="efficiency" value="0.8" required>
+          </li>
+          <li>
+            <label for="mass">Active Electrode Mass<br>[mg]:</label>
+            <input type="text" id="mass" name="mass" required>
+          </li>
+          <li class="button">
+            <button type="submit" id="calculate">Calculate</button>
+          </li>
+        </ul>
+      </form>
+      <section>
+        <p>The table below shows the previous results from the battery capacity calculation:</p>
+        <table id="results">
+          <tr>
+            <!-- <th colspan="6"></th> -->
+            <th rowspan="2">Composition</th>
+            <th rowspan="2">Mr&nbsp;(delithiated)<br>[g&nbsp;mol<sup>-1</sup>]</th>
+            <th rowspan="2">Capacity<br />[mAh&nbsp;g<sup>-1</sup>]</th>
+            <th rowspan="2">Cycle Efficiency</th>
+            <th rowspan="2">Active Electrode Mass<br>[mg]</th>
+            <th rowspan="2">Theoret. Electrode Capacity<br>[mAh]</th>
+            <th colspan="4">Charging Rate</th>
+          </tr>
+          <tr>
+            <th>1C<br>[mA]</th>
+            <th>C/2<br>[mA]</th>
+            <th>C/5<br>[mA]</th>
+            <th>C/10<br>[mA]</th>
+          </tr>
 
-      </table>
-    </section>
+        </table>
+      </section>
+    </main>
   </body>
 </html>
